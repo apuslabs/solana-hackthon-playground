@@ -10,7 +10,7 @@ const ShortAddress: FC<{ address: string }> = ({ address }) => {
   const lastPart = address.slice(-4);
   const shortAddress = `${firstPart}...${lastPart}`;
   return (
-    <div className="tooltip" data-tip={address}>
+    <div title={address} data-tip={address}>
       {isLongerThen8Chars ? shortAddress : address}
     </div>
   );
