@@ -5,6 +5,7 @@ import { Icon } from './SvgIcon'
 interface PlayGroundProps {
   data: Options[]
   value: string
+  discribe?: string
   onChange: (data: Options) => void
 }
 
@@ -42,25 +43,18 @@ const PlayGround: FC<PlayGroundProps> = (props) => {
 
   return (
     <div>
-      <details className="dropdown w-full mt-3" ref={dropdownRef}>
-        <summary className="w-full rounded-md bg-[#f8f8f8] h-[47px] flex items-center px-4 border-solid border border-[#afafaf] cursor-pointer hover:bg-[#e6e6e6]">
-          {
-             current?.headType === 'icon' ? <span className="w-[22px] h-[22px] rounded-sm bg-[#bebebe] flex items-center justify-center	mr-2">{ current?.icon }</span>
-              : <span className="w-[22px] h-[22px] rounded-md overflow-hidden	mr-2"><img src={current?.imageUrl} /></span>
-          }
-          <span>{ current?.label }</span>
+      <details className="dropdown mt-3" ref={dropdownRef}>
+        <summary className="min-w-48 rounded-full h-[47px] flex items-center px-4 border-solid border border-[#afafaf] cursor-pointer hover:bg-[#e6e6e6] justify-center	active:bg-[#cbecf7]">
+          <span>{props.discribe}:{ current?.label }</span>
         </summary>
-        <ul className="dropdown-content z-[1] menu p-0 shadow bg-base-100 rounded-box w-full z-10 w-full max-h-80 overflow-auto flex-nowrap">
+        <ul className="dropdown-content w-60 z-[1] menu p-0 shadow bg-base-100 rounded-box w-full z-10 w-full max-h-80 overflow-auto flex-nowrap border border-[#d2d2d2]">
+          <div className="p-4 pb-0">{ props.discribe }</div>
           {
             props.data?.map(item => (
               <li className="relative w-full" onClick={() => handleClick(item)} key={item.value}>
-                <a className="py-3 bg-[#f8f8f8]">
-                  {
-                    item.headType === 'icon' ? <span className="w-[22px] h-[22px] rounded-sm bg-[#bebebe] flex items-center justify-center">{  item?.icon }</span>
-                    : <span className="w-8 h-8 rounded-md overflow-hidden	"><img src={item.imageUrl} /></span>
-                  }
+                <a className="py-3">
+                  <input type="radio" name="radio" className="radio radio-primary" checked={item?.value === current?.value} onChange={() => {}} />
                   <span className="title">{ item.label }</span>
-                  { current?.value === item.value && <span><Icon name="Check" color="#0056B5" /></span> }
                 </a>
               </li>
             ))

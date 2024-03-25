@@ -5,7 +5,7 @@ import { ReactElement } from 'react'
 export interface Options {
   value: string
   label: string
-  headType: 'icon' | 'image'
+  headType: 'icon' | 'image' | 'radio'
   icon?: ReactElement
   imageUrl?: string
   prompt?: string
@@ -115,4 +115,32 @@ export const StyleList: Options[] = [
     imageUrl: LowPoly,
     prompt: 'low poly style, (low poly art), 1girl, solo, sunglasses, lips, red hair, long hair, portrait'
   },
+]
+
+export const dateList: Options[] = [
+  {
+    label: 'This Month',
+    value: '30',
+    headType: 'radio'
+  },
+  {
+    label: 'Last Month',
+    value: '60',
+    headType: 'radio'
+  },
+  {
+    label: 'Last 90 days',
+    value: '90',
+    headType: 'radio'
+  },
+  {
+    label: 'This Year',
+    value: '365',
+    headType: 'radio'
+  },
+  {
+    label: 'Last Year',
+    value: '730',
+    headType: 'radio'
+  }
 ]
